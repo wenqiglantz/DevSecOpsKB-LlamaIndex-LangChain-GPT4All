@@ -29,7 +29,7 @@ def data_ingestion_indexing(directory_path):
     #allows the user to explicitly set certain constraint parameters
     prompt_helper = PromptHelper(max_input_size, num_outputs, max_chunk_overlap, chunk_size_limit=chunk_size_limit)
 
-    local_llm_path = './ggml-gpt4all-j-v1.3-groovy.bin'
+    local_llm_path = './ggml-gpt4all-j-v1.3-groovy.bin' # not in this repo, but in local directory only due to large file size
     
     #LLMPredictor is a wrapper class around LangChain's LLMChain that allows easy integration into LlamaIndex
     llm_predictor = LLMPredictor(llm=GPT4All(model=local_llm_path, backend='gptj', streaming=True, n_ctx=512))
