@@ -20,15 +20,6 @@ import os
 
 def data_ingestion_indexing(directory_path):
 
-    #constraint parameters
-    max_input_size = 4096
-    num_outputs = 512
-    max_chunk_overlap = 20
-    chunk_size_limit = 600
-
-    #allows the user to explicitly set certain constraint parameters
-    prompt_helper = PromptHelper(max_input_size, num_outputs, max_chunk_overlap, chunk_size_limit=chunk_size_limit)
-
     local_llm_path = './ggml-gpt4all-j-v1.3-groovy.bin' # not in this repo, but in local directory only due to large file size
     
     #LLMPredictor is a wrapper class around LangChain's LLMChain that allows easy integration into LlamaIndex
@@ -36,6 +27,7 @@ def data_ingestion_indexing(directory_path):
     
     embed_model = LangchainEmbedding(HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2"))
 
+    #allows the user to explicitly set certain constraint parameters
     prompt_helper = PromptHelper(max_input_size=512, num_output=256, max_chunk_overlap=-1000)
     
     #constructs service_context
